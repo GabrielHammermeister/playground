@@ -1,0 +1,14 @@
+.input {
+    flex: 1;
+    background: rgb(221 221 221 / 40%);
+    border: 1px solid silver;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

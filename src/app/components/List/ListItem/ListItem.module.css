@@ -1,0 +1,21 @@
+.itemContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.itemVotes {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.itemContent {
+    background: var(--background-10-gray);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #dbdbdb69;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
