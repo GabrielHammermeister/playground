@@ -1,41 +1,73 @@
 "use client";
 
 import UpvoteListContext from "@/app/context/UpvoteList/Context";
-import React, {Reducer, useReducer} from "react";
-import {ListItemType} from "@/app/models/UpvoteList";
+import React, {Reducer, useEffect, useReducer} from "react";
+import {UpvoteList, UpvoteListItemType} from "@/app/models/UpvoteList";
 import {Action} from "@/app/context/UpvoteList/types";
+import {getUpvoteList} from "@/app/services/UpvoteList";
+
+const initialState = { id: '4SHr4ICGATXlLackEAgz', listData: [], updatedAt: ''}
 
 export default function UpvoteListProvider({ children }: { children: React.ReactNode}) {
-    const [listData, dispatch] = useReducer<Reducer<ListItemType[], Action>>(listReducer, []);
+    const [listData, dispatch] = useReducer<Reducer<UpvoteList, Action>>(listReducer, initialState);
 
-    function findListItemIndex(listData: ListItemType[], id: string) {
+    useEffect(() => {
+        const fetchFirestoreData = async () => {
+            const firestoreUpvoteList = await getUpvoteList()
+            if(firestoreUpvoteList.listData.length > 0) {
+                dispatch({type: 'hydrate', payload: firestoreUpvoteList})
+            }
+        }
+        fetchFirestoreData()
+    }, []);
+
+    function findListItemIndex(listData: UpvoteListItemType[], id: string) {
         return listData?.findIndex(value => value.id === id)
     }
 
-    function sortUpvoteList(listData: ListItemType[]) {
+    function sortUpvoteList(listData: UpvoteListItemType[]) {
         return listData.sort((a, b) => {
             if(a.votes > b.votes) return - 1
             else return 0
         })
     }
 
-    function listReducer(listDataState: ListItemType[], action: Action) {
+    function listReducer(upvoteListState: UpvoteList, action: Action): UpvoteList {
         switch (action.type) {
+            case "hydrate": {
+                return action.payload
+            }
             case 'upvote': {
-                const foundIndex = findListItemIndex(listDataState, action.payload.id)
-                listDataState[foundIndex].votes += 1
-                return [...sortUpvoteList(listDataState)]
+                const { listData } = upvoteListState
+
+                const foundIndex = findListItemIndex(listData, action.payload.id)
+                listData[foundIndex].votes += 1
+                return {
+                    ...upvoteListState,
+                    listData: sortUpvoteList(listData),
+                    updatedAt: Date.now().toString()
+                }
             }
             case 'downvote': {
-                const foundIndex = findListItemIndex(listDataState, action.payload.id)
-                if(listDataState[foundIndex].votes > 0) {
-                    listDataState[foundIndex].votes -= 1
-                    return [...sortUpvoteList(listDataState)]
+                const {listData} = upvoteListState
+
+                const foundIndex = findListItemIndex(listData, action.payload.id)
+                if(listData[foundIndex].votes > 0) {
+                    listData[foundIndex].votes -= 1
+                    return {
+                        ...upvoteListState,
+                        listData: sortUpvoteList(listData),
+                        updatedAt: Date.now().toString()
+                    }
                 }
-                return [...listDataState]
+                return upvoteListState
             }
             case 'add-item': {
-                return [...listDataState, action.payload]
+                return {
+                    ...upvoteListState,
+                    listData: [...upvoteListState.listData, action.payload],
+                    updatedAt: Date.now().toString()
+                }
             }
             default: {
                 // @ts-ignore
@@ -46,7 +78,7 @@ export default function UpvoteListProvider({ children }: { children: React.React
 
     return (
         <UpvoteListContext.Provider value={{
-            listDataState: listData,
+            upvoteListState: listData,
             dispatch
         }}>
             {children}

@@ -1,12 +1,13 @@
-import {ListItemType} from "@/app/models/UpvoteList";
+import {UpvoteList, UpvoteListItemType} from "@/app/models/UpvoteList";
 import {Dispatch} from "react";
 
 export interface UpvoteListContextType {
-    listDataState?: ListItemType[]
+    upvoteListState?: UpvoteList
     dispatch: Dispatch<Action>
 }
 
 export type Action =
-    | { type: 'add-item', payload: ListItemType }
+    | { type: 'add-item', payload: UpvoteListItemType }
     | { type: 'upvote', payload: { id: string } }
     | { type: 'downvote', payload: { id: string } }
+    | { type: 'hydrate', payload: UpvoteList }

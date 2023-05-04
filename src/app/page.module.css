@@ -1,10 +1,17 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
   align-items: center;
   padding: 2rem;
   min-height: 100vh;
+}
+
+.actionSection {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  margin-top: 30px;
 }
 
 .description a {

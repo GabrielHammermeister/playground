@@ -3,7 +3,11 @@ import {UpvoteListContextType} from "@/app/context/UpvoteList/types";
 
 
 const UpvoteListContext = createContext<UpvoteListContextType>({
-    listDataState: [],
+    upvoteListState: {
+        id: '',
+        listData: [],
+        updatedAt: ''
+    },
     dispatch: () => null
 })
 

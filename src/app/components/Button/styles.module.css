@@ -1,0 +1,12 @@
+.buttonTertiary {
+    padding: 10px 20px;
+    text-transform: uppercase;
+    background: none;
+    border-radius: 5px;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+.buttonTertiary:hover {
+    background: var(--background-30-gray);
+}

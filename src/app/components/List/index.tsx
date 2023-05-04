@@ -1,10 +1,10 @@
 import styles from "./UpvoteList.module.css";
 import ListItem from "@/app/components/List/ListItem/ListItem";
-import {ListItemType} from "@/app/models/UpvoteList";
+import {UpvoteListItemType} from "@/app/models/UpvoteList";
 
 
 export function UpvoteList({ data = []}: {
-    data?: ListItemType[]
+    data?: UpvoteListItemType[]
 }) {
     return (
         <ul className={styles.list}>

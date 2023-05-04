@@ -4,11 +4,11 @@ import styles from "./ListItem.module.css";
 import chevronUp from "@/../public/chevron-up.svg";
 import chevronDown from "@/../public/chevron-down.svg";
 import IconButton from "@/app/components/IconButton";
-import {ListItemType} from "@/app/models/UpvoteList";
+import {UpvoteListItemType} from "@/app/models/UpvoteList";
 import {useContext} from "react";
 import UpvoteListContext from "@/app/context/UpvoteList/Context";
 
-export default function ListItem({ item }: { item: ListItemType }) {
+export default function ListItem({ item }: { item: UpvoteListItemType }) {
     const { dispatch } = useContext(UpvoteListContext)
 
     function handleUpvote() {
