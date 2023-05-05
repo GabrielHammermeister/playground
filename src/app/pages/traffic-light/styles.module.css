@@ -1,0 +1,99 @@
+.light {
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    border-radius: 50%;
+    border: 5px solid black;
+
+    filter: grayscale(0.7);
+    opacity: 50%;
+}
+
+.base {
+    width: 75px;
+    height: 20px;
+    background: var(--traffic-light-bg-dark);
+    border-radius: 0 0 10px 10px;
+}
+
+.pole {
+    width: 20px;
+    background: var(--traffic-light-bg-dark);
+    position: absolute;
+    bottom: 0;
+    top: 50%;
+}
+
+
+.flexContainer1  {
+    display: flex;
+    position: absolute;
+    z-index: 0;
+    top: 30%;
+}
+
+.flexContainer2  {
+    display: flex;
+    position: absolute;
+    z-index: 0;
+    top: 42%;
+}
+
+.flexContainer3  {
+    display: flex;
+    position: absolute;
+    z-index: 0;
+    top: 54%;
+}
+
+.triangle1 {
+    clip-path: polygon(0% 84%, 0% 100%, 100% 100%, 100% -120%);
+    border-radius: 14px;
+    transform: rotate(64deg);
+    height: 110px;
+    width: 110px;
+    background-color: var(--traffic-light-bg-dark);
+    position: relative;
+    top: -4px;
+    left: 4px;
+}
+.triangle2 {
+    clip-path: polygon(0% 36%, 0% 100%, 100% 100%, 100% -5%);
+    border-radius: 14px;
+    transform: rotate(23deg);
+    height: 110px;
+    width: 110px;
+    background-color: var(--traffic-light-bg-dark);
+    position: relative;
+    top: 0;
+    right: 7px;
+}
+
+.lightsContainer {
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--traffic-light-bg-light);
+    padding: 20px;
+    border-radius: 16px;
+
+    position: relative;
+    z-index: 10;
+}
+
+.red {
+    background-color: red;
+    box-shadow: 0 0 98px 10px red;
+
+}
+.green {
+    background-color: lawngreen;
+    box-shadow: 0 0 98px 10px lawngreen;
+
+}
+.yellow {
+    background-color: yellow;
+    box-shadow: 0 0 98px 10px yellow;
+
+}

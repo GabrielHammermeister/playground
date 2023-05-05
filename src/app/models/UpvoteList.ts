@@ -1,3 +1,5 @@
+import {Timestamp} from "@firebase/firestore-types";
+
 export type UpvoteListItemType = {
     id: string
     title: string
@@ -6,7 +8,7 @@ export type UpvoteListItemType = {
 
 export interface List {
     id: string
-    updatedAt: string
+    updatedAt?: Timestamp
 }
 
 export interface UpvoteList extends List {

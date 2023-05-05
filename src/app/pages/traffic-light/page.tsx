@@ -1,15 +1,8 @@
-"use client"
+"use client";
 import styles from "@/app/page.module.css";
-import pageStyles from './styles.module.css'
-import {ListInput} from "@/app/components/List/ListInput/ListInput";
-import Button from "@/app/components/Button";
-import {UpvoteList} from "@/app/components/List";
+import pageStyles from "./styles.module.css";
 import {useEffect, useState} from "react";
-import {clearTimeout} from "timers";
 
-// 5000 red
-// 3000 green
-// 1000 yellow
 const lightSequence = [
     {timeout: 5000, color: 'red'},
     {timeout: 3000, color: 'green'},
@@ -20,12 +13,12 @@ export default function TrafficLight() {
     const [currentLight, setCurrentLight] = useState(0);
 
     useEffect(() => {
-        console.log("current index", currentLight);
         let ligthIndex = currentLight
         if(currentLight >= 3) {
             setCurrentLight(0)
             ligthIndex = 0
         }
+
         const light = document.getElementById(lightSequence[ligthIndex].color)
         light && light.classList.add('lightOn')
 
@@ -40,7 +33,7 @@ export default function TrafficLight() {
     }, [currentLight]);
 
     return (
-        <main className={styles.main}>
+        <main id={"main"} className={styles.main}>
             <h1>
                 TRAFFIC LIGHT
             </h1>
@@ -49,10 +42,20 @@ export default function TrafficLight() {
                 <div id={"yellow"} className={`${pageStyles.light} ${pageStyles.yellow}`}/>
                 <div id={"green"} className={`${pageStyles.light} ${pageStyles.green}`}/>
             </div>
-            <div className={pageStyles.flexContainer}>
+            <div className={pageStyles.flexContainer1}>
                 <div className={pageStyles.triangle1}/>
                 <div className={pageStyles.triangle2}/>
             </div>
+            <div className={pageStyles.flexContainer2}>
+                <div className={pageStyles.triangle1}/>
+                <div className={pageStyles.triangle2}/>
+            </div>
+            <div className={pageStyles.flexContainer3}>
+                <div className={pageStyles.triangle1}/>
+                <div className={pageStyles.triangle2}/>
+            </div>
+            <div className={pageStyles.base}/>
+            <div className={pageStyles.pole}/>
 
         </main>
     );

@@ -15,6 +15,9 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
+  --traffic-light-bg-light: #182b41;
+  --traffic-light-bg-dark: #111c2d;
+
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
     #16abff33 0deg,

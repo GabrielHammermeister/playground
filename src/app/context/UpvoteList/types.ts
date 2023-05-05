@@ -1,9 +1,11 @@
 import {UpvoteList, UpvoteListItemType} from "@/app/models/UpvoteList";
-import {Dispatch} from "react";
+import {Dispatch, SetStateAction} from "react";
 
 export interface UpvoteListContextType {
     upvoteListState?: UpvoteList
     dispatch: Dispatch<Action>
+    listChanged: boolean
+    setListChanged: Dispatch<SetStateAction<boolean>>
 }
 
 export type Action =

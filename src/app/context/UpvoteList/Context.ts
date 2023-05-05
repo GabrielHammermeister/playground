@@ -6,9 +6,10 @@ const UpvoteListContext = createContext<UpvoteListContextType>({
     upvoteListState: {
         id: '',
         listData: [],
-        updatedAt: ''
     },
-    dispatch: () => null
+    dispatch: () => null,
+    listChanged: false,
+    setListChanged: () => null
 })
 
 export default UpvoteListContext

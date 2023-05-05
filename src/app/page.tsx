@@ -14,22 +14,18 @@ import Button from "@/app/components/Button";
 
 
 export default function Home() {
-    const { upvoteListState } = useContext(UpvoteListContext)
-    const [saveEnabled, setSaveEnabled] = useState(false);
-
-
-    useEffect(() => {
-        if(upvoteListState?.updatedAt) {
-            console.log(new Date(upvoteListState?.updatedAt));
-
-        }
-    }, [upvoteListState]);
+    const { upvoteListState, listChanged, setListChanged } = useContext(UpvoteListContext)
 
     function handleSaveList() {
         if(upvoteListState) {
-            updateUpvoteList(upvoteListState)
+            updateUpvoteList(upvoteListState, setListChanged)
         }
     }
+
+    useEffect(() => {
+        console.log("listChanged", listChanged);
+        console.log("upvoteListState", upvoteListState);
+    }, [listChanged]);
 
     return (
         <main className={styles.main}>
@@ -38,7 +34,7 @@ export default function Home() {
             </h1>
             <ListInput/>
             <section className={styles.actionSection}>
-                <Button buttonAttributes={{onClick: handleSaveList}}>
+                <Button buttonAttributes={{onClick: handleSaveList, disabled: !listChanged}} >
                     Save
                 </Button>
             </section>
