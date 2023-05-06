@@ -45,6 +45,16 @@ export default function upvoteListReducer(upvoteListState: UpvoteList, action: A
                 listData: [...upvoteListState.listData, action.payload],
             }
         }
+        case 'delete-item': {
+            const {listData} = upvoteListState
+            const foundIndex = findListItemIndex(listData, action.payload.id)
+            listData.splice(foundIndex, 1)
+
+            return {
+                ...upvoteListState,
+                listData
+            }
+        }
         default: {
             // @ts-ignore
             throw Error('Unknown action: ' + action.type);

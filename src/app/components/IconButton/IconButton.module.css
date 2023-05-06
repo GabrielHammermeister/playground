@@ -4,6 +4,8 @@
     background: none;
     border: none;
     cursor: pointer;
+
+    padding: 5px;
 }
 .button:hover {
     background: var(--background-10-gray);
@@ -16,4 +18,5 @@
 
 .image {
     height: 100%;
+    width: 100%;
 }

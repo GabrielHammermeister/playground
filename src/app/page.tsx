@@ -22,11 +22,6 @@ export default function Home() {
         }
     }
 
-    useEffect(() => {
-        console.log("listChanged", listChanged);
-        console.log("upvoteListState", upvoteListState);
-    }, [listChanged]);
-
     return (
         <main className={styles.main}>
             <h1>
@@ -34,6 +29,12 @@ export default function Home() {
             </h1>
             <ListInput/>
             <section className={styles.actionSection}>
+                <div>
+                    <img />
+                    <span>
+                        Saved to cloud
+                    </span>
+                </div>
                 <Button buttonAttributes={{onClick: handleSaveList, disabled: !listChanged}} >
                     Save
                 </Button>

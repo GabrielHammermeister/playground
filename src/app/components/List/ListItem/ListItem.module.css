@@ -1,6 +1,14 @@
 .itemContainer {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
+}
+
+.itemVotes {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
 .itemVotes {

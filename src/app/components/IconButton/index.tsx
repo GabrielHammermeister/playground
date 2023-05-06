@@ -5,18 +5,21 @@ import {ButtonHTMLAttributes, DetailedHTMLProps} from "react";
 export default function IconButton({src, alt, size = 'medium', buttonAttributes }: {
     src: string,
     alt: string,
-    size?: 'small' | 'medium' | 'large'
+    size?: 'extraSmall' | 'small' | 'medium' | 'large'
     buttonAttributes?: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 }) {
     const sizes = {
+        extraSmall: {
+            height: '20px', width: '24px', padding: 0
+        },
         small: {
-            height: '20px', width: '24px'
+            height: '30px', width: '30px'
         },
         medium: {
-            height: '24px', width: '24px'
+            height: '32px', width: '32px'
         },
         large: {
-            height: '30px', width: '30px'
+            height: '36px', width: '36px'
         }
     }
 

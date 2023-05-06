@@ -6,12 +6,11 @@ import {Timestamp} from "@firebase/firestore";
 
 type ValidationKind = 'changes' | 'initialization'
 const VALIDATION_KINDS: Record<ValidationKind, string[]> = {
-    changes: ['upvote', 'downvote', 'add-item'],
+    changes: ['upvote', 'downvote', 'add-item', 'delete-item'],
     initialization: ['hydrate']
 }
 
 function persistContextState(upvoteListState: UpvoteList) {
-    console.log("upvoteListState", upvoteListState);
     localStorage.setItem('upvote-list', JSON.stringify(upvoteListState))
     return upvoteListState
 }
@@ -40,10 +39,13 @@ export default function validationReducer(upvoteListState: UpvoteList, action: A
                         const firestoreUpvoteList = action.payload
                         if(!persistedUpvoteList) return firestoreUpvoteList
 
-                        const savedDate = firestoreUpvoteList.updatedAt?.toDate()
-                        const persistedDate = new Date(persistedUpvoteList.updatedAt?.seconds * 1000)
+                        const { updatedAt: firestoreUpdatedAt } = firestoreUpvoteList
+                        const { updatedAt: persistedUpdatedAt } = persistedUpvoteList
 
-                        if(persistedDate > savedDate) {
+                        const savedDate = firestoreUpdatedAt && new Date(firestoreUpdatedAt.seconds * 1000)
+                        const persistedDate = persistedUpdatedAt && new Date(persistedUpdatedAt.seconds * 1000)
+
+                        if( (persistedDate && savedDate) && (persistedDate > savedDate) ) {
                             if(!listChanged) setListChanged(true)
                             return persistedUpvoteList
                         } else {

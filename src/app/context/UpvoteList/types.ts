@@ -10,6 +10,7 @@ export interface UpvoteListContextType {
 
 export type Action =
     | { type: 'add-item', payload: UpvoteListItemType }
+    | { type: 'delete-item', payload: { id: string } }
     | { type: 'upvote', payload: { id: string } }
     | { type: 'downvote', payload: { id: string } }
     | { type: 'hydrate', payload: UpvoteList }
