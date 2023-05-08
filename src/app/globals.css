@@ -8,6 +8,14 @@
   --background-00-gray: rgb(221, 221, 221, 0.4);
   --background-10-gray: rgba(221, 221, 221, 0.5);
   --background-30-gray: rgba(221, 221, 221, 0.7);
+  --background-40-gray: rgba(221, 221, 221, 0.8);
+  --background-50-gray: rgba(221, 221, 221, 0.9);
+
+  --background-20-dark-gray: rgba(136, 136, 136, 0.6);
+  --background-30-dark-gray: rgba(136, 136, 136, 0.7);
+  --background-40-dark-gray: rgba(136, 136, 136, 0.8);
+  --background-50-dark-gray: rgba(136, 136, 136, 0.9);
+
 
   --text-primary: rgb(0, 0, 0);
 
@@ -70,6 +78,7 @@ a {
   text-decoration: none;
 }
 
+/*noinspection CssUnusedSymbol*/
 .lightOn {
   filter: none !important;
   opacity: 1 !important;

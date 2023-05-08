@@ -7,12 +7,12 @@ export default function Loading ({ children }: {
     children: React.ReactNode
 }) {
     return (
-        <>
+        <main>
             <h1>
-                CARREGANDO CARALEO ...
+                CARREGANDO PROJETINHOS ...
 
                 {children}
             </h1>
-        </>
+        </main>
     );
 }

@@ -20,7 +20,7 @@ function getPersistedContextState() {
     return JSON.parse(String(persistedUpvoteList)) as UpvoteList
 }
 
-export default function validationReducer(upvoteListState: UpvoteList, action: Action, { listChanged = false, setListChanged }: {listChanged: boolean, setListChanged: Dispatch<SetStateAction<boolean>>}): UpvoteList {
+export default function validationReducer(upvoteListState: UpvoteList[], action: Action, { listChanged = false, setListChanged }: {listChanged: boolean, setListChanged: Dispatch<SetStateAction<boolean>>}): UpvoteList[] {
 
     for(const key in VALIDATION_KINDS) {
         if(VALIDATION_KINDS[key as ValidationKind].includes(action.type)) {

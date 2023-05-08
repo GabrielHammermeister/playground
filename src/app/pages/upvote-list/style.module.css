@@ -1,0 +1,53 @@
+.gridLists {
+    width: 100%;
+    align-content: center;
+    margin-top: 4rem;
+    display: grid;
+    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.gridAddList {
+    color: var(--background-50-dark-gray);
+    background: white;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+
+    border: 2px dashed var(--background-50-dark-gray);
+
+
+    transition: all .1s linear;
+}
+
+.gridAddList:hover {
+    border: 2px dashed black;
+    color: black;
+    background: var(--background-00-gray);
+}
+
+.gridAddList:active {
+    background: var(--background-30-gray);
+}
+
+.gridItem {
+    border-radius: 10px;
+    background: var(--background-30-gray);
+    padding: 10px 20px;
+    cursor: pointer;
+
+    border: none;
+
+    transition: all .1s linear;
+}
+.gridItem:hover {
+    background: var(--background-40-gray);
+    transform: translate(5px, -5px);
+    box-shadow: var(--background-40-dark-gray) -4px 4px, var(--background-20-dark-gray) -8px 8px;
+}
+.gridItem:active {
+    background: var(--background-50-gray);
+    transform: translate(3px, -3px);
+    box-shadow: none;
+}

@@ -1,45 +1,37 @@
-// noinspection JSUnusedGlobalSymbols
+'use client'
 
-"use client";
 import styles from "./page.module.css";
-import {UpvoteList} from "@/app/components/List";
-import {useContext, useEffect, useState} from "react";
-import {ListInput} from "@/app/components/List/ListInput/ListInput";
-import UpvoteListContext from "@/app/context/UpvoteList/Context";
-import {firestore} from "@/app/services/firebase/initializeApp";
-import {collection, getDocs} from "@firebase/firestore";
-import {getUpvoteList, updateUpvoteList} from "@/app/services/UpvoteList";
-import Button from "@/app/components/Button";
-
-
+import Link from "next/link";
+import {useEffect} from "react";
+import {getAllUpvoteLists, updateListById} from "@/app/services/UpvoteList";
 
 export default function Home() {
-    const { upvoteListState, listChanged, setListChanged } = useContext(UpvoteListContext)
 
-    function handleSaveList() {
-        if(upvoteListState) {
-            updateUpvoteList(upvoteListState, setListChanged)
-        }
-    }
+    useEffect(() => {
+        // getAllUpvoteLists().then(res => {
+        //     updateListById('xkSPfi8Oywga6cdCoqdB', {...res[0], id: 'xkSPfi8Oywga6cdCoqdB'})
+        // })
+    }, []);
 
     return (
         <main className={styles.main}>
             <h1>
-                UPVOTE LIST
+                HOME PAGE
             </h1>
-            <ListInput/>
-            <section className={styles.actionSection}>
-                <div>
-                    <img />
-                    <span>
-                        Saved to cloud
-                    </span>
-                </div>
-                <Button buttonAttributes={{onClick: handleSaveList, disabled: !listChanged}} >
-                    Save
-                </Button>
+            <section className={styles.routerSection}>
+                <ul className={styles.routesList}>
+                    <li>
+                        <Link href={'pages/traffic-light'}>
+                            Traffic Light
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href={'pages/upvote-list'}>
+                            Upvote List
+                        </Link>
+                    </li>
+                </ul>
             </section>
-            <UpvoteList data={upvoteListState?.listData}/>
         </main>
     )
 }

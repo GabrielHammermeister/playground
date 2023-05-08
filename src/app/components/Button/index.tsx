@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import {ButtonHTMLAttributes, DetailedHTMLProps, ReactNode} from "react";
 
+// noinspection JSUnusedLocalSymbols
 export default function Button({variant = 'tertiary', children, buttonAttributes }: {
     variant?: 'tertiary',
     children: ReactNode,

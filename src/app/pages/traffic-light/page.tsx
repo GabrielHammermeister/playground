@@ -1,5 +1,4 @@
 "use client";
-import styles from "@/app/page.module.css";
 import pageStyles from "./styles.module.css";
 import {useEffect, useState} from "react";
 
@@ -33,7 +32,7 @@ export default function TrafficLight() {
     }, [currentLight]);
 
     return (
-        <main id={"main"} className={styles.main}>
+        <>
             <h1>
                 TRAFFIC LIGHT
             </h1>
@@ -57,6 +56,6 @@ export default function TrafficLight() {
             <div className={pageStyles.base}/>
             <div className={pageStyles.pole}/>
 
-        </main>
+        </>
     );
 }

@@ -8,6 +8,7 @@ export type UpvoteListItemType = {
 
 export interface List {
     id: string
+    title: string
     updatedAt?: Timestamp
 }
 

@@ -7,11 +7,19 @@
   min-height: 100vh;
 }
 
-.actionSection {
+.routesList {
+  list-style: none;
   display: flex;
-  flex-direction: row-reverse;
-  width: 100%;
-  margin-top: 30px;
+  margin-top: 8rem;
+  gap: 50px;
+}
+.routesList a{
+  padding: 10px 20px;
+  background-color: var(--background-00-gray);
+}
+
+.routesList a:hover{
+  background-color: var(--background-30-gray);
 }
 
 .description a {
