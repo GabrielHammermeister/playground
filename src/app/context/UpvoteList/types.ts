@@ -1,5 +1,5 @@
 import {UpvoteList, UpvoteListItemType} from "@/app/models/UpvoteList";
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch} from "react";
 
 export interface UpvoteListContextType {
     upvoteListState?: UpvoteList
@@ -7,9 +7,9 @@ export interface UpvoteListContextType {
 }
 
 export type Action =
-    | { type: 'add-item', payload: { id: string, item: UpvoteListItemType } }
-    | { type: 'delete-item', payload: { id: string } }
-    | { type: 'upvote', payload: { id: string } }
-    | { type: 'downvote', payload: { id: string } }
+    | { type: 'add-item', payload: { item: UpvoteListItemType } }
+    | { type: 'delete-item', payload: { itemId: string } }
+    | { type: 'upvote', payload: { itemId: string } }
+    | { type: 'downvote', payload: { itemId: string } }
     | { type: 'hydrate', payload: UpvoteList }
-    | { type: 'list-saved', payload: { id: string } }
+    | { type: 'list-saved', payload: { listId: string } }

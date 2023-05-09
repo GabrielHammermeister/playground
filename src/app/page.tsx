@@ -1,17 +1,9 @@
-'use client'
+"use client";
 
 import styles from "./page.module.css";
 import Link from "next/link";
-import {useEffect} from "react";
-import {getAllUpvoteLists, updateListById} from "@/app/services/UpvoteList";
 
 export default function Home() {
-
-    useEffect(() => {
-        // getAllUpvoteLists().then(res => {
-        //     updateListById('xkSPfi8Oywga6cdCoqdB', {...res[0], id: 'xkSPfi8Oywga6cdCoqdB'})
-        // })
-    }, []);
 
     return (
         <main className={styles.main}>

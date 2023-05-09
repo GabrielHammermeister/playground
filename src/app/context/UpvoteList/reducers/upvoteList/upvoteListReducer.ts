@@ -1,7 +1,5 @@
 import {UpvoteList, UpvoteListItemType} from "@/app/models/UpvoteList";
 import {Action} from "@/app/context/UpvoteList/types";
-import {getUpvoteList} from "@/app/services/UpvoteList";
-import {throws} from "assert";
 
 function findListItemIndex(listData: UpvoteListItemType[], id: string) {
     return listData?.findIndex(value => value.id === id)
@@ -21,7 +19,7 @@ export default function upvoteListReducer(upvoteListsState: UpvoteList, action: 
         case 'upvote': {
             const { listData } = upvoteListsState
 
-            const foundIndex = findListItemIndex(listData, action.payload.id)
+            const foundIndex = findListItemIndex(listData, action.payload.itemId)
             listData[foundIndex].votes += 1
             return {
                 ...upvoteListsState,
@@ -31,7 +29,7 @@ export default function upvoteListReducer(upvoteListsState: UpvoteList, action: 
         case 'downvote': {
             const {listData} = upvoteListsState
 
-            const foundIndex = findListItemIndex(listData, action.payload.id)
+            const foundIndex = findListItemIndex(listData, action.payload.itemId)
             if(listData[foundIndex].votes > 0) {
                 listData[foundIndex].votes -= 1
                 return {
@@ -44,12 +42,12 @@ export default function upvoteListReducer(upvoteListsState: UpvoteList, action: 
         case 'add-item': {
             return {
                 ...upvoteListsState,
-                listData: [...upvoteListsState.listData, action.payload],
+                listData: [...upvoteListsState.listData, action.payload.item],
             }
         }
         case 'delete-item': {
             const {listData} = upvoteListsState
-            const foundIndex = findListItemIndex(listData, action.payload.id)
+            const foundIndex = findListItemIndex(listData, action.payload.itemId)
             listData.splice(foundIndex, 1)
 
             return {

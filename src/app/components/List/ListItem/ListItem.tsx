@@ -14,13 +14,13 @@ export default function ListItem({ item }: { item: UpvoteListItemType }) {
     const [showDelete, setShowDelete] = useState(false);
 
     function handleUpvote() {
-        dispatch({type: 'upvote', payload: {id: item.id}})
+        dispatch({type: 'upvote', payload: {itemId: item.id}})
     }
     function handleDownvote() {
-        dispatch({type: 'downvote', payload: {id: item.id}})
+        dispatch({type: 'downvote', payload: { itemId: item.id}})
     }
     function handleDelete() {
-        dispatch({type: 'delete-item', payload: {id: item.id}})
+        dispatch({type: 'delete-item', payload: {itemId: item.id}})
     }
 
     return (

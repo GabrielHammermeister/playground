@@ -13,7 +13,7 @@ export function ListInput() {
     const {dispatch} = useContext(UpvoteListContext)
     function handleOnSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        dispatch({type: 'add-item', payload: { id: uuidv4(), title: inputValue,  votes: 0 }})
+        dispatch({ type: 'add-item', payload: { item: { id: uuidv4(), title: inputValue,  votes: 0 }}})
         setInputValue('')
     }
 
