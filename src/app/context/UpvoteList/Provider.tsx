@@ -10,35 +10,21 @@ import firebase from "firebase/compat";
 import upvoteListReducer from "@/app/context/UpvoteList/reducers/upvoteList/upvoteListReducer";
 import validationReducer from "@/app/context/UpvoteList/reducers/validation/validationReducer";
 
-const initialState = [{ id: '4SHr4ICGATXlLackEAgz', title: '', listData: []}, { id: 'asdffasdf2134asdf', title: '', listData: []}]
+const initialState: UpvoteList = { id: '4SHr4ICGATXlLackEAgz', title: '', listData: [], listChanged: false}
 
 export default function UpvoteListProvider({ children }: { children: React.ReactNode}) {
-    const [listChanged, setListChanged] = useState(false);
+    const [listData, dispatch] = useReducer<Reducer<UpvoteList, Action>>(mainReducer, initialState);
 
-    const mainReducer = (upvoteListsState: UpvoteList[], action: Action): UpvoteList[] => {
-        return validationReducer(upvoteListReducer(upvoteListsState, action), action, { listChanged, setListChanged })
+    function mainReducer (upvoteListsState: UpvoteList, action: Action): UpvoteList  {
+
+        return validationReducer(upvoteListReducer(upvoteListsState, action), action)
     }
-
-    const [listData, dispatch] = useReducer<Reducer<UpvoteList[], Action>>(mainReducer, initialState);
-
-    //
-    // useEffect(() => {
-    //     const fetchFirestoreData = async () => {
-    //         const firestoreUpvoteList = await getUpvoteList()
-    //         if(firestoreUpvoteList.listData.length > 0) {
-    //             dispatch({type: 'hydrate', payload: firestoreUpvoteList})
-    //         }
-    //     }
-    //     fetchFirestoreData()
-    // }, []);
 
 
     return (
         <UpvoteListContext.Provider value={{
             upvoteListState: listData,
-            dispatch,
-            listChanged,
-            setListChanged
+            dispatch
         }}>
             {children}
         </UpvoteListContext.Provider>

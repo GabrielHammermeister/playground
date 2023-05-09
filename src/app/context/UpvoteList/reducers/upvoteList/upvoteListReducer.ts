@@ -13,16 +13,10 @@ function sortUpvoteList(listData: UpvoteListItemType[]) {
         else return 0
     })
 }
-export default function upvoteListReducer(upvoteListsState: UpvoteList[], action: Action): UpvoteList[] {
+export default function upvoteListReducer(upvoteListsState: UpvoteList, action: Action): UpvoteList {
     switch (action.type) {
         case "hydrate": {
-            const { id } = action.payload
-            getUpvoteList(id).then(res => {
-                return [...upvoteListsState, res]
-            }).catch(err => {
-                throw new Error('Erro ao buscar a lista')
-                return upvoteListsState
-            })
+            return action.payload
         }
         case 'upvote': {
             const { listData } = upvoteListsState
@@ -61,6 +55,12 @@ export default function upvoteListReducer(upvoteListsState: UpvoteList[], action
             return {
                 ...upvoteListsState,
                 listData
+            }
+        }
+        case "list-saved": {
+            return {
+                ...upvoteListsState,
+                listChanged: false
             }
         }
         default: {

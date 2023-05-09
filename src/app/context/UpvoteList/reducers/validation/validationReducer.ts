@@ -20,36 +20,51 @@ function getPersistedContextState() {
     return JSON.parse(String(persistedUpvoteList)) as UpvoteList
 }
 
-export default function validationReducer(upvoteListState: UpvoteList[], action: Action, { listChanged = false, setListChanged }: {listChanged: boolean, setListChanged: Dispatch<SetStateAction<boolean>>}): UpvoteList[] {
+export default function validationReducer(upvoteListState: UpvoteList, action: Action): UpvoteList {
 
     for(const key in VALIDATION_KINDS) {
         if(VALIDATION_KINDS[key as ValidationKind].includes(action.type)) {
             switch (key as ValidationKind) {
                 case 'changes': {
-                    if(!listChanged) setListChanged(true)
+                    let listChanged = upvoteListState.listChanged
+                    if(!upvoteListState.listChanged)  listChanged = true
                     return persistContextState({
                         ...upvoteListState,
-                        updatedAt: Timestamp.now()
+                        updatedAt: Timestamp.now(),
+                        listChanged
                     })
 
                 }
                 case 'initialization': {
                     const persistedUpvoteList = getPersistedContextState()
                     if(action.type === 'hydrate') {
-                        const firestoreUpvoteList = action.payload
-                        if(!persistedUpvoteList) return firestoreUpvoteList
-
-                        const { updatedAt: firestoreUpdatedAt } = firestoreUpvoteList
-                        const { updatedAt: persistedUpdatedAt } = persistedUpvoteList
-
-                        const savedDate = firestoreUpdatedAt && new Date(firestoreUpdatedAt.seconds * 1000)
-                        const persistedDate = persistedUpdatedAt && new Date(persistedUpdatedAt.seconds * 1000)
-
-                        if( (persistedDate && savedDate) && (persistedDate > savedDate) ) {
-                            if(!listChanged) setListChanged(true)
+                        // const firestoreUpvoteList = action.payload
+                        // if(!persistedUpvoteList) return firestoreUpvoteList
+                        //
+                        // const { updatedAt: firestoreUpdatedAt } = firestoreUpvoteList
+                        // const { updatedAt: persistedUpdatedAt } = persistedUpvoteList
+                        //
+                        // const savedDate = firestoreUpdatedAt && new Date(firestoreUpdatedAt.seconds * 1000)
+                        // const persistedDate = persistedUpdatedAt && new Date(persistedUpdatedAt.seconds * 1000)
+                        //
+                        // let listChanged = upvoteListState.listChanged
+                        // if( (persistedDate && savedDate) && (persistedDate > savedDate) ) {
+                        //     if(!upvoteListState.listChanged) listChanged = true
+                        //     return {
+                        //         ...persistedUpvoteList,
+                        //         listChanged
+                        //     }
+                        // } else {
+                        //     return {
+                        //         ...firestoreUpvoteList,
+                        //         listChanged
+                        //     }
+                        // }
+                        const firestoreList = action.payload
+                        if(persistedUpvoteList?.listChanged) {
                             return persistedUpvoteList
-                        } else {
-                            return firestoreUpvoteList
+                        } else  {
+                            return firestoreList
                         }
                     }
                 }

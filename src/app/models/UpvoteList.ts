@@ -10,6 +10,7 @@ export interface List {
     id: string
     title: string
     updatedAt?: Timestamp
+    listChanged: boolean
 }
 
 export interface UpvoteList extends List {

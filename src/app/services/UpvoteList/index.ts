@@ -25,11 +25,6 @@ export async function updateListById( id: string, newList: UpvoteList ): Promise
 }
 
 
-export async function updateUpvoteList(newList: UpvoteList, setListChanged: Dispatch<SetStateAction<boolean>>): Promise<void> {
-    try {
-        await setDoc(upvoteListRef, newList)
-        setListChanged(false)
-    } catch(err) {
-        throw Error('Update Error')
-    }
+export async function updateUpvoteList(newList: UpvoteList): Promise<void> {
+    await setDoc(upvoteListRef, {...newList, listChanged: false} as UpvoteList)
 }

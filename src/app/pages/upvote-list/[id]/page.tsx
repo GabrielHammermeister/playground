@@ -2,7 +2,7 @@
 
 import {useContext, useEffect, useState} from "react";
 import UpvoteListContext from "@/app/context/UpvoteList/Context";
-import {updateUpvoteList} from "@/app/services/UpvoteList";
+import {getUpvoteList, updateUpvoteList} from "@/app/services/UpvoteList";
 import {ListInput} from "@/app/components/List/ListInput/ListInput";
 import Image from "next/image";
 import uploadCloud from "@/../public/upload-cloud.svg";
@@ -12,12 +12,24 @@ import {UpvoteList} from "@/app/components/List";
 
 export default function Page({ params }: { params: { id: string }}) {
 
-    const { upvoteListState, listChanged, setListChanged, dispatch } = useContext(UpvoteListContext)
+    const { upvoteListState, dispatch } = useContext(UpvoteListContext)
     const [cloudFeedback, setCloudFeedback] = useState(false);
 
+    // useEffect(() => {
+    //     dispatch({type: 'hydrate', payload: {id: params.id}})
+    // }, []);
+
+
     useEffect(() => {
-        dispatch({type: 'hydrate', payload: {id: params.id}})
+        const fetchFirestoreData = async () => {
+            const firestoreUpvoteList = await getUpvoteList('4SHr4ICGATXlLackEAgz')
+            if(firestoreUpvoteList.listData.length > 0) {
+                dispatch({type: 'hydrate', payload: firestoreUpvoteList})
+            }
+        }
+        fetchFirestoreData()
     }, []);
+
 
     function giveCloudFeedback() {
         setCloudFeedback(true)
@@ -27,7 +39,8 @@ export default function Page({ params }: { params: { id: string }}) {
     async function handleSaveList() {
         if(upvoteListState) {
             try {
-                await updateUpvoteList(upvoteListState, setListChanged)
+                await updateUpvoteList(upvoteListState)
+                dispatch({ type: 'list-saved' })
                 giveCloudFeedback()
             } catch (err) {
                 throw Error('Error while saving changes')
@@ -51,7 +64,7 @@ export default function Page({ params }: { params: { id: string }}) {
                         Saved to cloud
                     </span>
                 </div>
-                <Button buttonAttributes={{onClick: handleSaveList, disabled: !listChanged}} >
+                <Button buttonAttributes={{onClick: handleSaveList, disabled: !upvoteListState?.listChanged}} >
                     Save
                 </Button>
             </section>
