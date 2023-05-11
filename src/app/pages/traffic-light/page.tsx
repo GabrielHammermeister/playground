@@ -36,23 +36,29 @@ export default function TrafficLight() {
             <h1>
                 TRAFFIC LIGHT
             </h1>
-            <div className={pageStyles.lightsContainer}>
-                <div id={"red"} className={`${pageStyles.light} ${pageStyles.red}`}/>
-                <div id={"yellow"} className={`${pageStyles.light} ${pageStyles.yellow}`}/>
-                <div id={"green"} className={`${pageStyles.light} ${pageStyles.green}`}/>
+            <div className={pageStyles.containerWrapper}>
+                <div className={pageStyles.lightsContainer}>
+                    <div id={"red"} className={`${pageStyles.light} ${pageStyles.red}`}/>
+                    <div id={"yellow"} className={`${pageStyles.light} ${pageStyles.yellow}`}/>
+                    <div id={"green"} className={`${pageStyles.light} ${pageStyles.green}`}/>
+                </div>
+
+                <div className={pageStyles.backLayer}>
+                    <div className={pageStyles.flexContainer1}>
+                        <div className={pageStyles.triangle1}/>
+                        <div className={pageStyles.triangle2}/>
+                    </div>
+                    <div className={pageStyles.flexContainer2}>
+                        <div className={pageStyles.triangle1}/>
+                        <div className={pageStyles.triangle2}/>
+                    </div>
+                    <div className={pageStyles.flexContainer3}>
+                        <div className={pageStyles.triangle1}/>
+                        <div className={pageStyles.triangle2}/>
+                    </div>
+                </div>
             </div>
-            <div className={pageStyles.flexContainer1}>
-                <div className={pageStyles.triangle1}/>
-                <div className={pageStyles.triangle2}/>
-            </div>
-            <div className={pageStyles.flexContainer2}>
-                <div className={pageStyles.triangle1}/>
-                <div className={pageStyles.triangle2}/>
-            </div>
-            <div className={pageStyles.flexContainer3}>
-                <div className={pageStyles.triangle1}/>
-                <div className={pageStyles.triangle2}/>
-            </div>
+
             <div className={pageStyles.base}/>
             <div className={pageStyles.pole}/>
 

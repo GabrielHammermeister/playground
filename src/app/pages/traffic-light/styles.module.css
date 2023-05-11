@@ -29,21 +29,21 @@
     display: flex;
     position: absolute;
     z-index: 0;
-    top: 24%;
+    top: 1%;
 }
 
 .flexContainer2  {
     display: flex;
     position: absolute;
     z-index: 0;
-    top: 40%;
+    top: 31%;
 }
 
 .flexContainer3  {
     display: flex;
     position: absolute;
     z-index: 0;
-    top: 56%;
+    top: 61%;
 }
 
 .triangle1 {
@@ -69,8 +69,26 @@
     right: 7px;
 }
 
+.containerWrapper {
+    margin-top: 20vh;
+    position: relative;
+}
+
+.backLayer {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 0;
+
+    display: flex;
+    justify-content: center;
+}
+
 .lightsContainer {
-    margin-top: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;

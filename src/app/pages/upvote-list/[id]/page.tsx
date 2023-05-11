@@ -22,6 +22,7 @@ export default function Page({ params }: { params: { id: string }}) {
 
         }
         fetchFirestoreData()
+        // eslint-disable-next-line
     }, []);
 
 
@@ -45,7 +46,7 @@ export default function Page({ params }: { params: { id: string }}) {
     return (
         <>
             <h1>
-                UPVOTE LIST: {params.id}
+                UPVOTE LIST
             </h1>
             <ListInput/>
             <section className={styles.actionSection}>
