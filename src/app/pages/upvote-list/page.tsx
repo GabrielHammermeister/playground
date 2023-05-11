@@ -2,7 +2,7 @@
 
 import styles from "./style.module.css";
 import {useEffect, useState} from "react";
-import {getAllUpvoteLists} from "@/app/services/UpvoteList";
+import {createUpvoteList, getAllUpvoteLists} from "@/app/services/UpvoteList";
 import {UpvoteList} from "@/app/models/UpvoteList";
 import Link from "next/link";
 
@@ -16,6 +16,10 @@ export default function Page() {
             setUpvoteLists(res)
         }).finally(() => setLoading(false))
     }, []);
+
+    function handleAddNewList() {
+        createUpvoteList().then(res => setUpvoteLists(prev => [...prev, res]))
+    }
 
     return (
         <>
@@ -32,7 +36,7 @@ export default function Page() {
                         </Link>
                     ))
                 }
-                <button className={styles.gridAddList}>
+                <button className={styles.gridAddList} onClick={handleAddNewList}>
                     <h3>Adicionar Lista</h3>
                 </button>
 

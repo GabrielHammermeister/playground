@@ -46,7 +46,6 @@ export default function persistanceReducer(upvoteListState: UpvoteList, action: 
                     if(action.type === 'hydrate') {
                         const firestoreList = action.payload
                         const persistedUpvoteList = getPersistedUpvoteListById(firestoreList.id)
-                        console.log("persistedlist: ", persistedUpvoteList);
                         if(persistedUpvoteList?.listChanged) {
                             return persistedUpvoteList
                         } else  {
