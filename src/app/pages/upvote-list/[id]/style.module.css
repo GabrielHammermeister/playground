@@ -30,5 +30,22 @@
 }
 
 .listTitle {
+    border: none;
+    cursor: auto;
+
+    /*font styles*/
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: bold;
     margin-right: auto;
+
+}
+
+.listTitle :active, .listTitle:focus, .listTitle:focus-visible {
+    border: none;
+    outline: none;
 }

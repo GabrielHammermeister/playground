@@ -13,3 +13,4 @@ export type Action =
     | { type: 'downvote', payload: { itemId: string } }
     | { type: 'hydrate', payload: UpvoteList }
     | { type: 'list-saved', payload: { listId: string } }
+    | { type: 'update-list-title', payload: { newTitle: string } }

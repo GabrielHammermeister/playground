@@ -61,6 +61,14 @@ export default function upvoteListReducer(upvoteListsState: UpvoteList, action: 
                 listChanged: false
             }
         }
+        case "update-list-title": {
+            const { newTitle } = action.payload
+            console.log(newTitle);
+            return {
+                ...upvoteListsState,
+                title: newTitle
+            }
+        }
         default: {
             // @ts-ignore
             throw Error('Unknown action: ' + action.type);
