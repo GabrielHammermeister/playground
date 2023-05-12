@@ -6,7 +6,7 @@ import {UpvoteList} from "@/app/models/UpvoteList";
 import {Action} from "@/app/context/UpvoteList/types";
 
 import upvoteListReducer from "@/app/context/UpvoteList/reducers/upvoteList/upvoteListReducer";
-import persistanceReducer from "@/app/context/UpvoteList/reducers/validation/persistanceReducer";
+import persistanceReducer from "@/app/context/UpvoteList/reducers/persistance/persistanceReducer";
 
 const initialState: UpvoteList = { id: '4SHr4ICGATXlLackEAgz', title: '', listData: [], listChanged: false}
 

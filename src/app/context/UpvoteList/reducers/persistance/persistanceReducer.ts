@@ -13,7 +13,11 @@ function persistUpvoteList(upvoteListState: UpvoteList) {
     let persistedUpvoteLists = getPersistedUpvoteLists()
     if(persistedUpvoteLists?.length > 0) {
         const foundListIndex = persistedUpvoteLists.findIndex(list => list.id === upvoteListState.id)
-        persistedUpvoteLists[foundListIndex] = upvoteListState
+        if(foundListIndex === -1) {
+            persistedUpvoteLists.push(upvoteListState)
+        } else {
+            persistedUpvoteLists[foundListIndex] = upvoteListState
+        }
         localStorage.setItem('upvote-list', JSON.stringify([...persistedUpvoteLists]))
     } else  {
         localStorage.setItem('upvote-list', JSON.stringify([upvoteListState]))
