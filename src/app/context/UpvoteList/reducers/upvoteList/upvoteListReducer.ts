@@ -63,7 +63,6 @@ export default function upvoteListReducer(upvoteListsState: UpvoteList, action: 
         }
         case "update-list-title": {
             const { newTitle } = action.payload
-            console.log(newTitle);
             return {
                 ...upvoteListsState,
                 title: newTitle

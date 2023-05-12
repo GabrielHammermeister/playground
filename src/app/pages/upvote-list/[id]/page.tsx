@@ -1,6 +1,7 @@
 "use client";
 
-import {ChangeEvent, useContext, useEffect, useMemo, useState} from "react";
+import "./local.css"
+import {ChangeEvent, FormEvent, useContext, useEffect, useMemo, useRef, useState} from "react";
 import UpvoteListContext from "@/app/context/UpvoteList/Context";
 import {getUpvoteList, updateListById} from "@/app/services/UpvoteList";
 import {ListInput} from "@/app/components/List/ListInput/ListInput";
@@ -10,13 +11,30 @@ import styles from "./style.module.css";
 import Button from "@/app/components/Button";
 import {UpvoteList} from "@/app/components/List";
 
+
 export default function Page({ params }: { params: { id: string }}) {
 
     const { upvoteListState, dispatch } = useContext(UpvoteListContext)
     const [cloudFeedback, setCloudFeedback] = useState(false);
     const [enableEdit, setEnableEdit] = useState(false);
+    const titleInputRef = useRef<HTMLInputElement>(null)
 
     const memoizedListData = useMemo(() => upvoteListState?.listData, [upvoteListState?.listData])
+
+    useEffect(() => {
+        
+        const titleInput = titleInputRef.current
+        const listenFocusOut = (e: FocusEvent) => {
+            const target = e.target as Element
+            target.classList.remove('listTitleHighlight')
+            setEnableEdit(false)
+        }
+
+        titleInput?.addEventListener("focusout", listenFocusOut)
+        return () => {
+            titleInput?.removeEventListener('focusout', listenFocusOut)
+        }
+    }, []);
 
     useEffect(() => {
         const fetchFirestoreData = async () => {
@@ -32,14 +50,19 @@ export default function Page({ params }: { params: { id: string }}) {
         setTimeout(()  => setCloudFeedback(false), 5000)
     }
 
-    function handleUpdateTitle() {
+    function handleSelectText() {
+        titleInputRef.current?.select()
+        titleInputRef.current?.classList.add('listTitleHighlight')
         setEnableEdit(true)
     }
     function handleChangeTitle(e: ChangeEvent<HTMLInputElement>) {
         dispatch({type: 'update-list-title', payload: { newTitle: e.target.value}})
     }
 
-
+    function handleSubmitTitle(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault()
+        titleInputRef.current?.dispatchEvent(new Event('focusout'))
+    }
 
     async function handleSaveList() {
         if(upvoteListState) {
@@ -60,7 +83,20 @@ export default function Page({ params }: { params: { id: string }}) {
             </h1>
             <ListInput/>
             <section className={styles.actionSection}>
-                <input onChange={e => handleChangeTitle(e)} className={styles.listTitle} value={upvoteListState?.title} readOnly={!enableEdit} onDoubleClick={handleUpdateTitle}/>
+                <form
+                    onSubmit={(e) => handleSubmitTitle(e)}
+                    style={{marginRight: 'auto'}}
+                >
+                    <input
+                        ref={titleInputRef}
+                        onDoubleClick={handleSelectText}
+                        onChange={e => handleChangeTitle(e)}
+                        className={styles.listTitle}
+                        value={upvoteListState?.title}
+                        readOnly={!enableEdit}
+
+                    />
+                </form>
                 <div className={styles.uploadFeedbackContainer} style={{opacity: cloudFeedback ? 1 : 0}}>
                     <Image src={uploadCloud} alt={'upload cloud'}  width={20} height={20}/>
                     <span>

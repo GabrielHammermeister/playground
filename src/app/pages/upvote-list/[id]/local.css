@@ -1,0 +1,4 @@
+.listTitleHighlight {
+    outline: 1px solid var(--background-50-gray) !important;
+    border-bottom: 2px solid var(--background-50-dark-gray) !important;
+}

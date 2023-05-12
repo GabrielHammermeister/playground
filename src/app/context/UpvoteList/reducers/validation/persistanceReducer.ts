@@ -5,7 +5,7 @@ import {Timestamp} from "@firebase/firestore";
 
 type ValidationKind = 'changes' | 'initialization'
 const VALIDATION_KINDS: Record<ValidationKind, string[]> = {
-    changes: ['upvote', 'downvote', 'add-item', 'delete-item', 'list-saved'],
+    changes: ['upvote', 'downvote', 'add-item', 'delete-item', 'list-saved', 'update-list-title'],
     initialization: ['hydrate']
 }
 
