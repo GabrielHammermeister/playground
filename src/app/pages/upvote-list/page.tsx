@@ -5,6 +5,9 @@ import {useEffect, useState} from "react";
 import {createUpvoteList, getAllUpvoteLists} from "@/app/services/UpvoteList";
 import {UpvoteList} from "@/app/models/UpvoteList";
 import Link from "next/link";
+import ElevatedButton from "@/app/components/ElevatedButton";
+
+
 
 export default function Page() {
 
@@ -30,9 +33,7 @@ export default function Page() {
                 {loading ? (<h2>Carregando Listas</h2>) :
                     upvoteLists.map(list => (
                         <Link href={'pages/upvote-list/' + list.id} key={list.id}>
-                            <button className={styles.gridItem}>
-                                <h3>{list.title}</h3>
-                            </button>
+                            <ElevatedButton label={list.title}/>
                         </Link>
                     ))
                 }

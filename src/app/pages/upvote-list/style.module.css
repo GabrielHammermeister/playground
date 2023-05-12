@@ -31,24 +31,3 @@
     background: var(--background-30-gray);
 }
 
-.gridItem {
-    border-radius: 10px;
-    background: var(--background-30-gray);
-    padding: 10px 20px;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    border: none;
-
-    transition: all .1s linear;
-}
-.gridItem:hover {
-    background: var(--background-40-gray);
-    transform: translate(5px, -5px);
-    box-shadow: var(--background-40-dark-gray) -4px 4px, var(--background-20-dark-gray) -8px 8px;
-}
-.gridItem:active {
-    background: var(--background-50-gray);
-    transform: translate(3px, -3px);
-    box-shadow: none;
-}

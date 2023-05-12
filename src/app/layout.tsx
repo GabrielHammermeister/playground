@@ -3,8 +3,7 @@
 import "./globals.css";
 import {Inter} from "next/font/google";
 import React from "react";
-import UpvoteListProvider from "@/app/context/UpvoteList/Provider";
-
+import styles from './page.module.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -20,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
+        <main className={styles.main}>
+
+            {children}
+        </main>
       </body>
     </html>
   )

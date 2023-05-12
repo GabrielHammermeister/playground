@@ -2,11 +2,12 @@
 
 import styles from "./page.module.css";
 import Link from "next/link";
+import ElevatedButton from "@/app/components/ElevatedButton";
 
 export default function Home() {
 
     return (
-        <main className={styles.main}>
+        <>
             <h1>
                 HOME PAGE
             </h1>
@@ -14,16 +15,16 @@ export default function Home() {
                 <ul className={styles.routesList}>
                     <li>
                         <Link href={'pages/traffic-light'}>
-                            Traffic Light
+                            <ElevatedButton label={'Traffic Light'}/>
                         </Link>
                     </li>
                     <li>
                         <Link href={'pages/upvote-list'}>
-                            Upvote List
+                            <ElevatedButton label={'Upvote List'}/>
                         </Link>
                     </li>
                 </ul>
             </section>
-        </main>
+        </>
     )
 }
