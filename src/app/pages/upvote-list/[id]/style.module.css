@@ -29,11 +29,19 @@
     margin-top: 30px;
 }
 
+.listTitleForm {
+    width: clamp(200px,50%, 300px);
+    margin-right: auto;
+}
+
 .listTitle {
     border: none;
     cursor: auto;
     box-sizing: border-box;
     height: 100%;
+    border-radius: 5px;
+    padding-left: 10px;
+    text-overflow: ellipsis;
 
     /*font styles*/
     display: block;
@@ -43,9 +51,7 @@
     margin-inline-end: 0;
     font-weight: bold;
 
-    border-radius: 5px;
-    padding-left: 10px;
-    text-overflow: ellipsis;
+
 }
 
 

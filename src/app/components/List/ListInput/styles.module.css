@@ -1,10 +1,27 @@
 .input {
     flex: 1;
-    background: rgb(221 221 221 / 40%);
-    border: 1px solid silver;
+    /*background: rgb(221 221 221 / 40%);*/
+    /*border: 1px solid silver;*/
+    /*border-radius: 5px;*/
+
+    border: none;
+    cursor: auto;
+    box-sizing: border-box;
     border-radius: 5px;
-    padding: 10px;
+    padding-left: 10px;
+    text-overflow: ellipsis;
+    outline: 1px solid var(--background-50-gray) !important;
+    border-bottom: 2px solid var(--background-50-dark-gray) !important;
+
+    height: 2.7rem;
+    font-size: 1rem;
+    transition: all .1s ease-in;
 }
+
+.input:focus, .input:focus-visible {
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+}
+
 
 .form {
     width: 100%;

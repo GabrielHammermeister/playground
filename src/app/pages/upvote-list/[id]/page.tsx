@@ -85,7 +85,7 @@ export default function Page({ params }: { params: { id: string }}) {
             <section className={styles.actionSection}>
                 <form
                     onSubmit={(e) => handleSubmitTitle(e)}
-                    style={{marginRight: 'auto'}}
+                    className={styles.listTitleForm}
                 >
                     <input
                         ref={titleInputRef}

@@ -10,7 +10,7 @@ export default function IconButton({src, alt, size = 'medium', buttonAttributes 
 }) {
     const sizes = {
         extraSmall: {
-            height: '20px', width: '24px', padding: 0
+            height: '1.3rem', width: '1.5rem', padding: 0
         },
         small: {
             height: '30px', width: '30px'
@@ -19,7 +19,7 @@ export default function IconButton({src, alt, size = 'medium', buttonAttributes 
             height: '32px', width: '32px'
         },
         large: {
-            height: '36px', width: '36px'
+            height: '2.5rem', width: '2.5rem'
         }
     }
 
