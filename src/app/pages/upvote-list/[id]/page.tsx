@@ -3,13 +3,14 @@
 import "./local.css"
 import {ChangeEvent, FormEvent, useContext, useEffect, useMemo, useRef, useState} from "react";
 import UpvoteListContext from "@/app/context/UpvoteList/Context";
-import {getUpvoteList, updateListById} from "@/app/services/UpvoteList";
+import {deleteUpvoteList, getUpvoteList, updateListById} from "@/app/services/UpvoteList";
 import {ListInput} from "@/app/components/List/ListInput/ListInput";
 import Image from "next/image";
 import uploadCloud from "@/../public/upload-cloud.svg";
 import styles from "./style.module.css";
 import Button from "@/app/components/Button";
 import {UpvoteList} from "@/app/components/List";
+import {useRouter} from "next/navigation";
 
 
 export default function Page({ params }: { params: { id: string }}) {
@@ -18,6 +19,7 @@ export default function Page({ params }: { params: { id: string }}) {
     const [cloudFeedback, setCloudFeedback] = useState(false);
     const [enableEdit, setEnableEdit] = useState(false);
     const titleInputRef = useRef<HTMLInputElement>(null)
+    const router = useRouter()
 
     const memoizedListData = useMemo(() => upvoteListState?.listData, [upvoteListState?.listData])
 
@@ -76,6 +78,14 @@ export default function Page({ params }: { params: { id: string }}) {
         }
     }
 
+    function handleDeleteList() {
+        if(confirm("Tem certeza que quer excluir essa lista?")) {
+            deleteUpvoteList(upvoteListState?.id || '')
+            dispatch({ type: 'delete-list' })
+            router.push('pages/upvote-list')
+        }
+    }
+
     return (
         <>
             <h1>
@@ -105,6 +115,9 @@ export default function Page({ params }: { params: { id: string }}) {
                 </div>
                 <Button buttonAttributes={{onClick: handleSaveList, disabled: !upvoteListState?.listChanged}} >
                     Save
+                </Button>
+                <Button buttonAttributes={{onClick: handleDeleteList }} >
+                    Delete list
                 </Button>
             </section>
             <UpvoteList data={memoizedListData}/>

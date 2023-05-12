@@ -14,3 +14,4 @@ export type Action =
     | { type: 'hydrate', payload: UpvoteList }
     | { type: 'list-saved', payload: { listId: string } }
     | { type: 'update-list-title', payload: { newTitle: string } }
+    | { type: 'delete-list' }

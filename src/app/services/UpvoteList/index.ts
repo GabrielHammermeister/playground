@@ -1,11 +1,10 @@
-import {collection, doc, getDoc, getDocs, setDoc} from "@firebase/firestore";
+import {collection, deleteDoc, doc, getDoc, getDocs, setDoc} from "@firebase/firestore";
 import {firestore} from "@/app/services/firebase/initializeApp";
 import {UpvoteList} from "@/app/models/UpvoteList";
 
 const UPVOTE_COLECTION_PATH = 'upvote-lists'
 
 const upvoteListCol = collection(firestore, UPVOTE_COLECTION_PATH)
-const upvoteListRef = doc(firestore, UPVOTE_COLECTION_PATH, '4SHr4ICGATXlLackEAgz')
 
 function generateId(): string {
     return doc(collection(firestore, 'asdf')).id
@@ -27,9 +26,6 @@ export async function updateListById( id: string, newList: UpvoteList ): Promise
     await setDoc(listRef, {...newList, listChanged: false} as UpvoteList)
 }
 
-export async function updateUpvoteList(newList: UpvoteList): Promise<void> {
-    await setDoc(upvoteListRef, {...newList, listChanged: false} as UpvoteList)
-}
 export async function createUpvoteList(): Promise<UpvoteList> {
     const newListId = generateId()
     const newListData = {id: newListId, title: 'New Upvote List', listData: [], listChanged: false} as UpvoteList
@@ -37,3 +33,9 @@ export async function createUpvoteList(): Promise<UpvoteList> {
     await setDoc(newListRef, newListData)
     return newListData
 }
+
+export async function deleteUpvoteList(id: string): Promise<void> {
+    const listRef = doc(firestore, UPVOTE_COLECTION_PATH, id)
+    await deleteDoc(listRef)
+}
+

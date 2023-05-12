@@ -68,6 +68,9 @@ export default function upvoteListReducer(upvoteListsState: UpvoteList, action: 
                 title: newTitle
             }
         }
+        case "delete-list": {
+            return {id: "", listChanged: false, listData: [], title: ""}
+        }
         default: {
             // @ts-ignore
             throw Error('Unknown action: ' + action.type);
