@@ -1,0 +1,32 @@
+.navigationBar {
+    padding: 50px 20px;
+    background: black;
+    color: white;
+    width: 200px;
+    box-shadow: 7px 7px 0 0 rgba(0,0,0,0.1),20px 0 41px 17px rgba(0,0,0,0.1);
+}
+
+.playgroundLogo {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.navigationList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+
+.navigationLink {
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.navigationLink:hover {
+    text-decoration: underline;
+}
+.activeLink {
+    background: #1b67c5;
+}

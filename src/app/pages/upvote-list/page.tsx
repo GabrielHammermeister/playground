@@ -6,6 +6,7 @@ import {createUpvoteList, getAllUpvoteLists} from "@/app/services/UpvoteList";
 import {UpvoteList} from "@/app/models/UpvoteList";
 import Link from "next/link";
 import ElevatedButton from "@/app/components/ElevatedButton";
+import LoadingCircleDots from "@/app/components/LoadingCircleDots";
 
 
 
@@ -29,19 +30,23 @@ export default function Page() {
             <h1>
                 YOUR UPVOTE LISTS
             </h1>
-            <section className={styles.gridLists}>
-                {loading ? (<h2>Carregando Listas</h2>) :
-                    upvoteLists.map(list => (
-                        <Link href={'pages/upvote-list/' + list.id} key={list.id}>
-                            <ElevatedButton label={list.title}/>
-                        </Link>
-                    ))
-                }
-                <button className={styles.gridAddList} onClick={handleAddNewList}>
-                    <h3>Adicionar Lista</h3>
-                </button>
+                {loading ? (<LoadingCircleDots/>) :
 
-            </section>
+                    (<section className={styles.gridLists}>
+                        {
+                            upvoteLists.map(list => (
+                                <Link href={'pages/upvote-list/' + list.id} key={list.id}>
+                                    <ElevatedButton label={list.title}/>
+                                </Link>
+                            ))
+                        }
+                        <button className={styles.gridAddList} onClick={handleAddNewList}>
+                            <h3>Adicionar Lista</h3>
+                        </button>
+                    </section>)
+
+                }
+
         </>
     )
 
